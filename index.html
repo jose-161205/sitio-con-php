@@ -7,6 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>unos mecates</h1>//estos son pal marcos por si le da hambre
+    <header>
+    <p>
+        <button type="button" id="hamburguesa" popovertarget="navegacionDelSitio" aria-controls="navegacionDelSitio"
+            aria-label="Abrir navegación del sitio">
+            ≡
+        </button>
+    </p>
+    <nav popover="auto" id="navegacionDelSitio">
+        <h2>Navegación del sitio</h2>
+        <?php require "navegacion.php" ?>
+    </nav>
+    <nav id="navegacionAncha" aria-label="Navegación del sitio">
+        <?php require "navegacion.php" ?>
+    </nav>
+</header>
 </body>
 </html>
