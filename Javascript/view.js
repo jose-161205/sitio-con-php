@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (navegacion) navegacion.classList.remove('menu-visible');
         });
     });
-
+    
     if (formulario) {
         formulario.addEventListener('submit', async function(evento) {
             evento.preventDefault();

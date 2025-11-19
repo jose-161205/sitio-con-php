@@ -12,7 +12,7 @@ try {
     $db = new SQLite3($dbPath);
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(["error" => "No se pudo conectar a la BD"]);
+    echo json_encode(["error" => "No se pudo conectar a la BDS"]);
     exit();
 }
 
