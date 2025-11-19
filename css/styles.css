@@ -1,0 +1,80 @@
+header {
+    background-color: black;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 15px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin: 0;
+    font-size: 24px;
+}
+
+#hamburguesa {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+}
+
+#hamburguesa:hover {
+    color: #4CAF50;
+}
+
+#navegacionDelSitio {
+    background-color: #1a1a1a;
+    color: white;
+    display: none;
+    padding: 20px;
+    border-top: 2px solid #333;
+}
+
+#navegacionDelSitio.menu-visible {
+    display: block;
+}
+
+#cerrar-menu {
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#cerrar-menu:hover {
+    color: #4CAF50;
+}
+
+#navegacionDelSitio ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#navegacionDelSitio li {
+    margin: 15px 0;
+}
+
+#navegacionDelSitio a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#navegacionDelSitio a:hover {
+    color: #4CAF50;
+    text-decoration: underline;
+}

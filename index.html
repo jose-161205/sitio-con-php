@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Creacion de usuarios</title>
 </head>
 <body>
     <header>
-    <p>
-        <button type="button" id="hamburguesa" popovertarget="navegacionDelSitio" aria-controls="navegacionDelSitio"
-            aria-label="Abrir navegación del sitio">
-            ≡
-        </button>
-    </p>
-    <nav popover="auto" id="navegacionDelSitio">
-        <h2>Navegación del sitio</h2>
-        <?php require "navegacion.php" ?>
-    </nav>
-    <nav id="navegacionAncha" aria-label="Navegación del sitio">
-        <?php require "navegacion.php" ?>
-    </nav>
-</header>
+        <div class="header-container">
+            <button type="button" id="hamburguesa" aria-controls="navegacionDelSitio"
+                aria-label="Abrir navegación del sitio">
+                ≡
+            </button>
+            <h1>Creacion de usuarios</h1>
+        </div>
+        
+        <nav id="navegacionDelSitio" class="menu-hidden">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#login">Iniciar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+<footer>
+        <p>©Red hot chili pepers 2025 Creacion de usuarios.</p>
+</footer class= "pie de pagina">
+    <script src="Javascript/view.js"></script>
 </body>
 </html>
