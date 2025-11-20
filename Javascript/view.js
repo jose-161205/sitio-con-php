@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const json = await respuesta.json();
                 if (respuesta.ok) {
-                    // recargar lista y limpiar formulario
                     cargarUsuarios();
                     formulario.reset();
                 } else {
@@ -46,6 +45,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Usar delegación de eventos en la lista para manejar clics en botones de eliminar
+    if (listaHTML) {
+        listaHTML.addEventListener('click', async (evento) => {
+            // Verificar si el clic fue en un botón de eliminar
+            if (evento.target.matches('.btn-eliminar')) {
+                const username = evento.target.dataset.username;
+                if (confirm(`¿Estás seguro de que quieres eliminar a "${username}"?`)) {
+                    eliminarUsuario(username);
+                }
+            }
+        });
+    }
+
+    // Función para enviar la solicitud de eliminación al servidor
+    async function eliminarUsuario(username) {
+        try {
+            const respuesta = await fetch('src/guardar.php', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: username })
+            });
+
+            const json = await respuesta.json();
+            if (respuesta.ok) {
+                cargarUsuarios(); // Recargar la lista si la eliminación fue exitosa
+            } else {
+                alert(json.error || 'No se pudo eliminar el usuario.');
+            }
+        } catch (error) {
+            console.error('Error al eliminar:', error);
+            alert('Error de conexión al intentar eliminar.');
+        }
+    }
+
     // Cargar usuarios al inicio
     cargarUsuarios();
 
@@ -54,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const respuesta = await fetch('src/guardar.php');
             const datos = await respuesta.json();
 
-            // Si backend devuelve objeto de error, mostrar en consola
             if (!Array.isArray(datos)) {
                 console.error('Respuesta inesperada:', datos);
                 mostrarUsuariosEnPantalla([], listaHTML);
@@ -69,13 +101,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function mostrarUsuariosEnPantalla(datos, lista) {
         if (!lista) return;
-        lista.innerHTML = '';
+        lista.innerHTML = ''; // Limpiar lista anterior
 
-        datos.forEach(function(usuario, index) {
+        if (datos.length === 0) {
+            lista.innerHTML = '<li>No hay usuarios registrados.</li>';
+            return;
+        }
+
+        datos.forEach(function(usuario) {
             const itemLista = document.createElement('li');
-            // La BD devuelve { usuario: "...", password: "..." }
-            // Mostrar nombre y usar índice si quieres un identificador
-            itemLista.textContent = `#${index + 1}: ${usuario.usuario}`;
+            
+            const nombreUsuario = document.createElement('span');
+            nombreUsuario.textContent = usuario.usuario;
+
+            const btnEliminar = document.createElement('button');
+            btnEliminar.textContent = 'Eliminar';
+            btnEliminar.className = 'btn-eliminar'; // Clase para identificar el botón
+            btnEliminar.dataset.username = usuario.usuario; // Guardar el nombre de usuario en el botón
+
+            itemLista.appendChild(nombreUsuario);
+            itemLista.appendChild(btnEliminar);
             lista.appendChild(itemLista);
         });
     }

@@ -88,6 +88,35 @@ if ($metodo === 'POST') {
     }
 
     echo json_encode($listaUsuarios);
+
+} elseif ($metodo === 'DELETE') {
+    // --- ELIMINAR USUARIO ---
+    $input = json_decode(file_get_contents('php://input'), true);
+
+    if (!$input || !isset($input['username'])) {
+        http_response_code(400);
+        echo json_encode(["error" => "Nombre de usuario no proporcionado."]);
+        exit();
+    }
+
+    $usuario = $input['username'];
+
+    $stmt = $db->prepare('DELETE FROM usuarios WHERE usuario = :u');
+    $stmt->bindValue(':u', $usuario, SQLITE3_TEXT);
+
+    $res = $stmt->execute();
+    if ($res !== false) {
+        if ($db->changes() > 0) {
+            echo json_encode(["mensaje" => "Usuario eliminado con éxito"]);
+        } else {
+            http_response_code(404); // Not Found
+            echo json_encode(["error" => "Usuario no encontrado"]);
+        }
+    } else {
+        http_response_code(500);
+        echo json_encode(["error" => "Error al eliminar el usuario"]);
+    }
+
 } else {
     http_response_code(405);
     echo json_encode(["error" => "Método no permitido"]);

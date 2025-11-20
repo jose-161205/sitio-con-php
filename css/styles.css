@@ -243,30 +243,59 @@ button[type="submit"]:active {
     }
 }
 
-/* lista de usuarios */
-
-.lista-usuarios-container {
-    margin-top: 30px;
-    padding: 20px;
+/* --- Estilos para la lista de usuarios --- */
+.lista-usuarios {
+    max-width: 680px; /* Mismo ancho que el formulario */
+    margin: 30px auto; /* Centrado y con espacio */
     background-color: #f9f9f9;
-    border-radius: 8px;
-    max-width: 680px; /* Mismo ancho que tu formulario */
-    margin-left: auto;
-    margin-right: auto;
+    border: 1px solid #ddd;
+    padding: 26px;
+    border-radius: 12px;
+    box-sizing: border-box;
 }
 
-#listaUsuarios {
-    list-style-type: none; /* Quita los puntos de la lista */
+.lista-usuarios h2 {
+    margin: 0 0 18px 0;
+    font-size: 20px;
+    color: #333; /* Color oscuro para fondo claro */
+    text-align: center;
+}
+
+.lista-usuarios ul {
+    list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
-#listaUsuarios li {
-    background: white;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
+.lista-usuarios li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 8px;
+    border-bottom: 1px solid #eee;
     color: #333;
     font-family: sans-serif;
 }
+
+.lista-usuarios li:last-child {
+    border-bottom: none;
+}
+
+.btn-eliminar {
+    background-color: #e74c3c; /* Rojo suave */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.btn-eliminar:hover {
+    background-color: #c0392b; /* Rojo más oscuro */
+}
+
 
 /*píe de pagina */
 
